@@ -3,17 +3,18 @@ Summary(pl):	Rozszerzenia zarz±dzania do Javy
 Name:		jmx
 Version:	1.2.1
 Release:	1
-License:	restricted, non-distributable (Sun Binary Code License - see URL)
+License:	restricted, non-distributable (Sun Community Source License - see URL)
 Group:		Development/Languages/Java
 # download through forms from http://java.sun.com/products/JavaManagement/download.html
-Source0:	%{name}-%(echo %{version}| tr . _)-ri.zip
+Source0:	%{name}-%(echo %{version}| tr . _)-scsl.zip
+Patch0:		%{name}-build.patch
 URL:		http://java.sun.com/products/JavaManagement/
 NoSource:	0
-Requires:	jre
+BuildRequires:	jakarta-ant
+BuildRequires:	jdk >= 1.5.0
+Requires:	jdk
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_javalibdir	/usr/share/java
 
 %description
 Java Management Extensions.
@@ -33,20 +34,25 @@ Documentation for Java Management Extensions.
 Dokumentacja do Java Management Extensions.
 
 %prep
-%setup -q -n %{name}-%(echo %{version}| tr . _)-bin
+%setup -q -n %{name}-%(echo %{version}| tr . _)-src
+%patch0 -p1
+
+%build
+ant
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_javalibdir}
-install lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
+install -d $RPM_BUILD_ROOT%{_javadir}
+install build/lib/jmxri.jar $RPM_BUILD_ROOT%{_javadir}
+install lib/jmxtools.jar $RPM_BUILD_ROOT%{_javadir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_javalibdir}/*.jar
+%{_javadir}/*.jar
 
 %files doc
 %defattr(644,root,root,755)
