@@ -5,6 +5,7 @@ Version:	1.2
 Release:	1
 License:	restricted, non-distributable (Sun Binary Code License - see URL)
 Group:		Development/Languages/Java
+# download through forms from http://java.sun.com/products/JavaManagement/download.html
 Source0:	%{name}-%(echo %{version}| tr . _)-ri.zip
 URL:		http://java.sun.com/products/JavaManagement/
 NoSource:	0
