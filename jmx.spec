@@ -1,11 +1,11 @@
 Summary:	Java Management Extensions
 Summary(pl):	Rozszerzenia zarz±dzania do Javy
 Name:		jmx
-Version:	1.0.1
+Version:	1.2
 Release:	1
 License:	restricted, non-distributable (Sun Binary Code License - see URL)
 Group:		Development/Languages/Java
-Source0:	%{name}-1_0-ri_bin.zip
+Source0:	%{name}-%(echo %{version}| tr . _)-ri.zip
 URL:		http://java.sun.com/products/JavaManagement/
 NoSource:	0
 Requires:	jre
@@ -32,13 +32,13 @@ Documentation for Java Management Extensions.
 Dokumentacja do Java Management Extensions.
 
 %prep
-%setup -q -n jmx-1_0_1-ri_bin
+%setup -q -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_javalibdir}
-install jmx/lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
+install lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,4 +49,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files doc
 %defattr(644,root,root,755)
-%doc jmx/doc jmx/examples jmx/index.html
+%doc doc examples
