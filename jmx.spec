@@ -3,10 +3,12 @@ Summary(pl):	Rozszerzenia zarz±dzania do Javy
 Name:		jmx
 Version:	1.0.1
 Release:	1
-License:	See http://java.sun.com/products/JavaManagement/ for details!
+License:	restricted, non-distributable (Sun Binary Code License - see URL)
 Group:		Development/Languages/Java
 Source0:	%{name}-1_0-ri_bin.zip
 URL:		http://java.sun.com/products/JavaManagement/
+NoSource:	0
+Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
