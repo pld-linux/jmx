@@ -1,0 +1,11 @@
+--- jmx-1_2_1-src/build.xml.orig	2003-07-15 17:24:30.000000000 +0200
++++ jmx-1_2_1-src/build.xml	2004-07-13 14:04:20.117125680 +0200
+@@ -43,7 +43,7 @@
+ 		debug="on"
+ 		debuglevel="lines,source"
+ 		optimize="on"
+-		target="1.2"
++		target="1.5"
+ 		includeAntRuntime="no"
+ 		includeJavaRuntime="no"		
+ 	/>
