@@ -12,7 +12,7 @@ URL:		http://java.sun.com/products/JavaManagement/
 NoSource:	0
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk >= 1.5.0
-Requires:	jdk
+Requires:	jre >= 1.5.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
