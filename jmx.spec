@@ -11,8 +11,8 @@ Patch0:		%{name}-build.patch
 URL:		http://java.sun.com/products/JavaManagement/
 NoSource:	0
 BuildRequires:	jakarta-ant
-BuildRequires:	jdk >= 1.5.0
-Requires:	jre >= 1.5.0
+BuildRequires:	jdk >= 1.4
+Requires:	jre >= 1.4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
