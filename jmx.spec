@@ -5,7 +5,7 @@ Version:	1.0.1
 Release:	1
 License:	See http://java.sun.com/products/JavaManagement/ for details!
 Group:		Development/Languages/Java
-Source0:	jmx-1_0-ri_bin.zip
+Source0:	%{name}-1_0-ri_bin.zip
 URL:		http://java.sun.com/products/JavaManagement/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
