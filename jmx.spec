@@ -5,8 +5,6 @@ Version:	1.0.1
 Release:	1
 License:	See http://java.sun.com/products/JavaManagement/ for details!
 Group:		Development/Languages/Java
-Group(de):	Entwicklung/Sprachen/Java
-Group(pl):	Programowanie/Jêzyki/Java
 Source0:	jmx-1_0-ri_bin.zip
 URL:		http://java.sun.com/products/JavaManagement/
 BuildArch:	noarch
@@ -24,8 +22,6 @@ Java Management Extensions - rozszerzenia zarz±dzania do Javy.
 Summary:	Documentation for Java Management Extensions
 Summary(pl):	Dokumentacja do Java Management Extensions
 Group:		Development/Languages/Java
-Group(de):	Entwicklung/Sprachen/Java
-Group(pl):	Programowanie/Jêzyki/Java
 
 %description doc
 Documentation for Java Management Extensions.
