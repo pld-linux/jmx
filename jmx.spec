@@ -10,7 +10,7 @@ Source0:	%{name}-%(echo %{version}| tr . _)-scsl.zip
 Patch0:		%{name}-build.patch
 URL:		http://java.sun.com/products/JavaManagement/
 NoSource:	0
-BuildRequires:	jakarta-ant
+BuildRequires:	ant
 BuildRequires:	jdk >= 1.4
 Requires:	jre >= 1.4
 BuildArch:	noarch
