@@ -1,5 +1,5 @@
 Summary:	Java Management Extensions
-Summary(pl.UTF-8):   Rozszerzenia zarządzania do Javy
+Summary(pl.UTF-8):	Rozszerzenia zarządzania do Javy
 Name:		jmx
 Version:	1.2.1
 Release:	1
@@ -24,7 +24,7 @@ Java Management Extensions - rozszerzenia zarządzania do Javy.
 
 %package doc
 Summary:	Documentation for Java Management Extensions
-Summary(pl.UTF-8):   Dokumentacja do Java Management Extensions
+Summary(pl.UTF-8):	Dokumentacja do Java Management Extensions
 Group:		Development/Languages/Java
 
 %description doc
