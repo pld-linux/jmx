@@ -63,6 +63,18 @@ JMX additional classes (com.sun.jdmk in jmxtools.jar).
 %description tools -l pl.UTF-8
 Dodatkowe klasy JMX (com.sun.jdmk w jmxtools.jar).
 
+%package demo
+Summary:	Demo for %{name}
+Summary(pl.UTF-8):	Pliki demonstracyjne dla pakietu %{name}
+Group:		Development
+Requires:	%{name} = %{version}-%{release}
+
+%description demo
+Demonstrations and samples for %{name}.
+
+%description demo -l pl.UTF-8
+Pliki demonstracyjne i przykłady dla pakietu %{name}.
+
 %prep
 %if %{with scsl}
 %setup -q -n %{name}-%{fver}-src -T -b1
@@ -104,6 +116,9 @@ ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 %doc doc/{README_SRC.txt,RELEASE_NOTES.txt} LICENSE.html
 %{_javadir}/jmxri-%{version}.jar
 %{_javadir}/jmxri.jar
+
+%files demo
+%defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
 
 %files javadoc
