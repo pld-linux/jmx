@@ -93,9 +93,9 @@ export LC_ALL=en_US # source not in ASCII
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
 
-install %{?with_scsl:build/}lib/jmxri.jar $RPM_BUILD_ROOT%{_javadir}/jmxri-%{version}.jar
+install %{?with_scsl:build/}lib/jmxri.jar $RPM_BUILD_ROOT%{_javadir}/jmx-%{version}.jar
 install lib/jmxtools.jar $RPM_BUILD_ROOT%{_javadir}/jmxtools-%{version}.jar
-ln -s jmxri-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jmxri.jar
+ln -s jmx-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jmx.jar
 ln -s jmxtools-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jmxtools.jar
 
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
@@ -114,8 +114,8 @@ ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 %files
 %defattr(644,root,root,755)
 %doc doc/{README_SRC.txt,RELEASE_NOTES.txt} LICENSE.html
-%{_javadir}/jmxri-%{version}.jar
-%{_javadir}/jmxri.jar
+%{_javadir}/jmx-%{version}.jar
+%{_javadir}/jmx.jar
 
 %files demo
 %defattr(644,root,root,755)
