@@ -1,5 +1,9 @@
+#
+# Conditional build:
+%bcond_with	scsl	# use SCSL-licensed sources (which need registration)
+#
 %include	/usr/lib/rpm/macros.java
-%define		_ver	%(echo %{version} | tr . _)
+%define		fver	%(echo %{version} | tr . _)
 Summary:	Java Management Extensions
 Summary(pl.UTF-8):	Rozszerzenia zarządzania do Javy
 Name:		jmx
@@ -8,12 +12,17 @@ Release:	1
 License:	restricted, non-distributable (Sun Community Source License - see URL)
 Group:		Development/Languages/Java
 # download through forms from http://java.sun.com/products/JavaManagement/download.html
-Source0:	%{name}-%{_ver}-scsl.zip
-# NoSource0-md5:	de1a800156998f4ef98bcdef4421f312
+Source0:	%{name}-%{fver}-ri.zip
+# NoSource0-md5:	2775b37b00b4da79115b222737b6df9c
+NoSource:	0
+%if %{with scsl}
+Source1:	%{name}-%{fver}-scsl.zip
+# NoSource1-md5:	de1a800156998f4ef98bcdef4421f312
+NoSource:	1
+%endif
 Patch0:		%{name}-build.patch
 URL:		http://java.sun.com/products/JavaManagement/
-NoSource:	0
-BuildRequires:	ant
+%{?with_scsl:BuildRequires:	ant}
 BuildRequires:	jdk >= 1.4
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
@@ -41,18 +50,38 @@ Documentation for Java Management Extensions.
 %description javadoc -l pl.UTF-8
 Dokumentacja do Java Management Extensions.
 
-%prep
-%setup -q -n %{name}-%{_ver}-src
-%patch0 -p1
+%package tools
+Summary:	JMX additional classes (com.sun.jdmk in jmxtools.jar)
+Summary(pl.UTF-8):	Dodatkowe klasy JMX (com.sun.jdmk w jmxtools.jar)
+Group:		Development/Languages/Java
+# loose dep to allow using with other JMX implementations (e.g. included in JRE)
+Requires:	jmx >= 1.2.1
 
+%description tools
+JMX additional classes (com.sun.jdmk in jmxtools.jar).
+
+%description tools -l pl.UTF-8
+Dodatkowe klasy JMX (com.sun.jdmk w jmxtools.jar).
+
+%prep
+%if %{with scsl}
+%setup -q -n %{name}-%{fver}-src -T -b1
+%patch0 -p1
+%else
+%setup -q -n %{name}-%{fver}-bin
+%endif
+
+%if %{with scsl}
 %build
 export LC_ALL=en_US # source not in ASCII
 %ant
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
-install build/lib/jmxri.jar $RPM_BUILD_ROOT%{_javadir}/jmxri-%{version}.jar
+
+install %{?with_scsl:build/}lib/jmxri.jar $RPM_BUILD_ROOT%{_javadir}/jmxri-%{version}.jar
 install lib/jmxtools.jar $RPM_BUILD_ROOT%{_javadir}/jmxtools-%{version}.jar
 ln -s jmxri-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jmxri.jar
 ln -s jmxtools-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jmxtools.jar
@@ -72,11 +101,18 @@ ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{README_SRC.txt,RELEASE_NOTES.txt}
-%{_javadir}/*.jar
+%doc doc/{README_SRC.txt,RELEASE_NOTES.txt} LICENSE.html
+%{_javadir}/jmxri-%{version}.jar
+%{_javadir}/jmxri.jar
 %{_examplesdir}/%{name}-%{version}
 
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
 %ghost %{_javadocdir}/%{name}
+
+%files tools
+%defattr(644,root,root,755)
+%doc doc/{README_SRC.txt,RELEASE_NOTES.txt} LICENSE.html
+%{_javadir}/jmxtools-%{version}.jar
+%{_javadir}/jmxtools.jar
