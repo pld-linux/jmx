@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	scsl	# use SCSL-licensed sources (which need registration)
 #
-%include	/usr/lib/rpm/macros.java
 %define		fver	%(echo %{version} | tr . _)
 Summary:	Java Management Extensions
 Summary(pl.UTF-8):	Rozszerzenia zarządzania do Javy
